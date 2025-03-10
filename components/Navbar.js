@@ -1,6 +1,8 @@
+"use client";
+
 import { useEffect, useState } from "react";
-import { auth, signInWithPopup, provider, signOut } from "../lib/firebase";
-import { useRouter } from "next/router";
+import { auth, signOut } from "../lib/firebase";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [user, setUser] = useState(null);
@@ -13,21 +15,17 @@ export default function Navbar() {
     return () => unsubscribe();
   }, []);
 
-  const handleLogin = async () => {
-    try {
-      await signInWithPopup(auth, provider);
-    } catch (error) {
-      console.error("로그인 오류:", error);
-    }
-  };
-
   const handleLogout = async () => {
     await signOut(auth);
+    setUser(null);
+    router.push("/login");  // ✅ 로그아웃 후 로그인 페이지로 이동
   };
 
   return (
     <nav className="p-4 bg-blue-500 text-white flex justify-between items-center">
-      <h1 className="text-xl font-bold cursor-pointer" onClick={() => router.push("/")}>동아리 홈페이지</h1>
+      <h1 className="text-xl font-bold cursor-pointer" onClick={() => router.push("/")}>
+        동아리 홈페이지
+      </h1>
       <div>
         {user ? (
           <>
@@ -37,7 +35,7 @@ export default function Navbar() {
             </button>
           </>
         ) : (
-          <button onClick={handleLogin} className="bg-white text-blue-500 px-4 py-2 rounded">
+          <button onClick={() => router.push("/login")} className="hidden">
             로그인
           </button>
         )}
