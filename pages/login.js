@@ -1,6 +1,12 @@
 "use client";
 
-import { auth, provider, signInWithPopup, signOut, db, doc, setDoc, getDoc } from "../lib/firebase";
+import { auth, provider, signInWithPopup, signOut } from "../lib/firebase";
+import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
+
+// ✅ db를 `getFirestore()`로 명확하게 선언
+const db = getFirestore();
+
+
 import { useState } from "react";
 
 export default function Login() {

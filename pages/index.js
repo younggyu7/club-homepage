@@ -1,6 +1,6 @@
 "use client";  // ✅ Next.js의 Client Component로 설정
 
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import Navbar from "../components/Navbar";
 
 export default function Home() {
