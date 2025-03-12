@@ -23,6 +23,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.2.1",
     "postcss-import": "^16.1.0",
+    "postcss-loader": "^8.1.1",
     "tailwindcss": "^4.0.13"
   }
 }
